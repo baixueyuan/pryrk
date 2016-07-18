@@ -7,15 +7,17 @@
 getDataUsingWind(file)
 }
 \arguments{
-\item{file}{the file name}
+\item{file}{A "character" string giving the file name path.}
 }
 \value{
-a data.frame
+A "clean" data.frame which can be used for further use.
 }
 \description{
-Read Data From Wind Client
+Read primary bond market data from Wind client and return the processed data.
 }
 \details{
-Read Data From Wind Client
+This functions is used to read the Excel file which is exported by Wind
+client. Only the columns useful for the further work will be maintain in the
+result \code{data.frame}. Reading Excel file uses the package \code{readxl}.
 }
 

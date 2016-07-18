@@ -1,24 +1,18 @@
 Package: pryrk
 Version: 0.5-1
 Date: 2015-01-01
-Title: My First Collection of Functions
-Authors@R: c(person("Joe", "Developer", role = c("aut", "cre"),
-		     email = "Joe.Developer@some.domain.net"),
-	      person("Pat", "Developer", role = "aut"),
-	      person("A.", "User", role = "ctb",
-		     email = "A.User@whereever.net"))
-Author: Joe Developer [aut, cre],
-    Pat Developer [aut],
-    A. User [ctb]
-Maintainer: Joe Developer <Joe.Developer@some.domain.net>
+Title: Primary Bond Market Ranking in China
+Authors@R: person("Xueyuan", "Bai", role = c("aut", "cre"),
+		     email = "bai_xueyuan@msn.com")
+Author: Bai Xueyuan [aut, cre]
+Maintainer: Bai Xueyuan <bai_xueyuan@msn.com>
 Depends:
     R (>= 3.1.0),
-    nlme
-Suggests:
-    MASS
-Description: A (one paragraph) description of what
-    the package does and why it may be useful.
+    WindR, RODBC, readxl
+Description: This package is designed specifically for the people who concern
+    the bond market of China. The functions are used to obtain the ranking of
+    underwriters' performance in the primary bond market. However, the data used
+    should be get from the Wind client. And, Wind is data provider in China,
+    only the user of Wind can have the access to their data.
 License: GPL (>= 2)
-URL: https://www.r-project.org, http://www.another.url
-BugReports: https://pkgname.bugtracker.url
 RoxygenNote: 5.0.1
