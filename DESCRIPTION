@@ -1,0 +1,9 @@
+Package: pryrk
+Type: Package
+Title: Generate the Bond Primary Market Ranking Data
+Version: 0.1.0
+Author: Bai Xueyuan<bai_xueyuan@msn.com>
+Maintainer: Bai Xueyuan<bai_xueyuan@msn.com>
+Description: More about what it does (maybe more than one line)
+License: GPL
+LazyData: TRUE
