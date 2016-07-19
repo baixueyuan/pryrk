@@ -4,13 +4,17 @@
 \alias{uwRanking}
 \title{Compute the Rank of Underwriter}
 \usage{
-uwRanking(data, header_cn = FALSE)
+uwRanking(data, header_cn = FALSE, round = TRUE)
 }
 \arguments{
 \item{data}{the input data which is returned by \code{uwSplit}}
 
 \item{header_cn}{logical, if \code{TRUE} then the result's column names will
 be in Chinese, default is \code{FALSE}}
+
+\item{round}{logical, whether to round the figure to 2 decimal, which will
+make it easier to view the results, however the precision is not so
+important for this work, default is TRUE}
 }
 \value{
 The data.frame containing the ranking result.

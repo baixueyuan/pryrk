@@ -1,14 +1,13 @@
 Package: pryrk
-Version: 0.5-1
-Date: 2015-01-01
+Version: 0.2-2
+Date: 2016-07-19
 Title: Primary Bond Market Ranking in China
 Authors@R: person("Xueyuan", "Bai", role = c("aut", "cre"),
 		     email = "bai_xueyuan@msn.com")
 Author: Bai Xueyuan [aut, cre]
 Maintainer: Bai Xueyuan <bai_xueyuan@msn.com>
 Depends:
-    R (>= 3.1.0),
-    WindR, RODBC, readxl
+    R (>= 3.1.0)
 Description: This package is designed specifically for the people who concern
     the bond market of China. The functions are used to obtain the ranking of
     underwriters' performance in the primary bond market. However, the data used
@@ -16,3 +15,6 @@ Description: This package is designed specifically for the people who concern
     only the user of Wind can have the access to their data.
 License: GPL (>= 2)
 RoxygenNote: 5.0.1
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr

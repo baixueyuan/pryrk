@@ -6,12 +6,16 @@
 #' client. Only the columns useful for the further work will be maintain in the
 #' result \code{data.frame}. Reading Excel file uses the package \code{readxl}.
 #'
-#' @param file A "character" string giving the file name path.
+#' @param file a "character" string giving the file name path. If missing, the
+#'   default file name is "bond.xlsx".
 #'
 #' @return A "clean" data.frame which can be used for further use.
 #' @export
+#' @importFrom readxl read_excel
 
 getDataUsingWind <- function(file) {
+  # 默认的文件名为当前工作目录下的“bond.xlsx”
+  if (missing(file)) file <- 'bond.xlsx'
   pri_list <- suppressWarnings(readxl::read_excel(file, sheet=1))
   colnames(pri_list) <- gsub('(\u4ebf)', '', colnames(pri_list), fixed=TRUE)
   colnames(pri_list) <- gsub('(\u5e74)', '', colnames(pri_list), fixed=TRUE)

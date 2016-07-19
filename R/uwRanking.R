@@ -11,11 +11,14 @@
 #' @param data the input data which is returned by \code{uwSplit}
 #' @param header_cn logical, if \code{TRUE} then the result's column names will
 #'   be in Chinese, default is \code{FALSE}
+#' @param round logical, whether to round the figure to 2 decimal, which will
+#'   make it easier to view the results, however the precision is not so
+#'   important for this work, default is TRUE
 #'
 #' @return The data.frame containing the ranking result.
 #' @export
 
-uwRanking <- function(data, header_cn=FALSE) {
+uwRanking <- function(data, header_cn=FALSE, round=TRUE) {
   # 本函数利用uwSplit计算出的数据来得到排名数据
   # 排名可以根据承销数量和承销金额来进行，由参数sort.by控制
 
@@ -24,6 +27,7 @@ uwRanking <- function(data, header_cn=FALSE) {
   rk_vol <- aggregate(data$rk_vol, list(underwriter=data$underwriter), sum)
   colnames(rk_qty)[2] <- 'qty'
   colnames(rk_vol)[2] <- 'vol'
+
   # 计算承销参与的绝对数量
   rk_qty_abs <- data.frame(t(t(table(data$underwriter))))
   rk_qty_abs[,2] <- NULL
@@ -45,6 +49,15 @@ uwRanking <- function(data, header_cn=FALSE) {
   rk$qty_rk <- rankNumber(rk$qty)
   rk$vol_rk <- rankNumber(rk$vol)
   rk$qty_abs_rk <- rankNumber(rk$qty_abs)
+
+  # 对于数量指标进行四舍五入
+  if (round) {
+    rk$qty <- round(rk$qty, 2)
+    rk$qty_pct <- round(rk$qty_pct, 2)
+    rk$vol <- round(rk$vol, 2)
+    rk$vol_pct <- round(rk$vol_pct, 2)
+    rk$qty_abs <- round(rk$qty_abs, 2)
+  }
 
   # 重新整理数据并返回结果
   rk <- rk[, c('underwriter', 'qty', 'qty_pct', 'qty_rk',
