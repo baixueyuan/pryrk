@@ -2,6 +2,7 @@
 
 export(getDataUsingWind)
 export(organizeUnderwriter)
+export(printRank)
 export(rankNumber)
 export(uwRanking)
 export(uwSplit)

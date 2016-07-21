@@ -13,3 +13,14 @@ rk$underwriter <- as.character(
     }
   })
 )
+
+dat_str <- sapply(rk, class)
+check <- c(underwriter="character",
+           qty="numeric",
+           qty_pct="numeric",
+           qty_rk="integer",
+           vol="numeric",
+           vol_pct="numeric",
+           vol_rk="integer",
+           qty_abs="numeric",
+           qty_abs_rk="integer")

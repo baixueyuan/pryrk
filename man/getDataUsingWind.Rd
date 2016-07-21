@@ -7,7 +7,8 @@
 getDataUsingWind(file)
 }
 \arguments{
-\item{file}{A "character" string giving the file name path.}
+\item{file}{a "character" string giving the file name path. If missing, the
+default file name is "bond.xlsx".}
 }
 \value{
 A "clean" data.frame which can be used for further use.
