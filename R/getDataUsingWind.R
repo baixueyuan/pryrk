@@ -26,15 +26,18 @@ getDataUsingWind <- function(file) {
                  "\u53d1\u884c\u89c4\u6a21",
                  "\u8ba1\u5212\u53d1\u884c\u89c4\u6a21",
                  "\u4e3b\u627f\u9500\u5546", "\u53d1\u884c\u8d77\u59cb\u65e5",
-                 "\u8d77\u606f\u65e5")
+                 "\u8d77\u606f\u65e5",
+                 "Wind\u503a\u5238\u7c7b\u578b(\u4e8c\u7ea7)")
   res <- pri_list[, col_names]
   colnames(res) <- c('code', 'name', 'amount', 'amountplan', 'underwriter',
-                     'initdate', 'carrydate')
+                     'initdate', 'carrydate', 'type')
   if (any(is.na(res$amount))) {
     res$amount[is.na(res$amount)] <- res$amountplan[is.na(res$amount)]
   }
   res$amountplan <- NULL
   res$underwriter <- organizeUnderwriter(res$underwriter)
+  res$initdate <- as.Date(res$initdate)
+  res$carrydate <- as.Date(res$carrydate)
   res <- na.omit(res)
   return(res)
 }
