@@ -55,5 +55,8 @@ uwSplit <- function(data) {
   # data_2$carrydate <- as.Date(
   #   as.POSIXct(data_2$carrydate, tz='UTC', origin='1970-01-01 00:00.00 UTC')
   # )
+  data_2$initdate <- as.Date(data_2$initdate, origin='1970-01-01')
+  data_2$carrydate <- as.Date(data_2$carrydate, origin='1970-01-01')
+
   return(data_2)
 }
