@@ -60,7 +60,7 @@ printRank <- function(data, header_cn=TRUE) {
   data$underwriter <- as.character(
     sapply(data$underwriter, function(x) {
       len <- stringr::str_length(x)
-      n <- 5 - len
+      n <- max(nchar(data$underwriter)) - len
       if (n > 0) {
         res <- paste(rep('\u3000', n), collapse='')
         res <- paste(x, res, sep='')

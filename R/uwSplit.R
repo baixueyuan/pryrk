@@ -49,5 +49,11 @@ uwSplit <- function(data) {
   # 给结果数据框设置列名称并与主承销商序列绑定
   colnames(data_2) <- colnames(data_1)
   data_2$underwriter <- uw_list
+  data_2$initdate <- as.Date(
+    as.POSIXct(data_2$initdate, tz='UTC', origin='1970-01-01 00:00.00 UTC')
+    )
+  data_2$carrydate <- as.Date(
+    as.POSIXct(data_2$carrydate, tz='UTC', origin='1970-01-01 00:00.00 UTC')
+  )
   return(data_2)
 }

@@ -74,6 +74,7 @@ organizeUnderwriter <- function(uw) {
   # uw <- gsub('恒泰长财证券','恒泰长财',uw)
   # uw <- gsub('北京农村商业银行','北京农商行',uw)
   # uw <- gsub('上海农村商业银行','上海农商行',uw)
+  # uw <- grep('西藏同信证券','西藏同信',uw)
 
   # 以下为ASCII码的函数部分
   uw <- gsub("\u80a1\u4efd\u6709\u9650\u8d23\u4efb\u516c\u53f8","",uw)
@@ -129,6 +130,7 @@ organizeUnderwriter <- function(uw) {
   uw <- gsub("\u6052\u6cf0\u957f\u8d22\u8bc1\u5238", "\u6052\u6cf0\u957f\u8d22", uw)
   uw <- gsub("\u5317\u4eac\u519c\u6751\u5546\u4e1a\u94f6\u884c", "\u5317\u4eac\u519c\u5546\u884c", uw)
   uw <- gsub("\u4e0a\u6d77\u519c\u6751\u5546\u4e1a\u94f6\u884c", "\u4e0a\u6d77\u519c\u5546\u884c", uw)
+  uw <- gsub('\u897f\u85cf\u540c\u4fe1\u8bc1\u5238', '\u897f\u85cf\u540c\u4fe1', uw)
 
   # uw[uw==''] <- '无'
   uw[uw==''] <- '\u65e0'
