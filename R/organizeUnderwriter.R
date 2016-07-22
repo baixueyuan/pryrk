@@ -75,6 +75,13 @@ organizeUnderwriter <- function(uw) {
   # uw <- gsub('北京农村商业银行','北京农商行',uw)
   # uw <- gsub('上海农村商业银行','上海农商行',uw)
   # uw <- grep('西藏同信证券','西藏同信',uw)
+  # uw <- gsub('邮政储蓄银行', '邮储银行', uw),
+  # uw <- gsub('农业发展银行', '农发行', uw),
+  # uw <- gsub('农村商业银行', '农商行', uw),
+  # uw <- gsub('广东顺德', '顺德', uw),
+  # uw <- gsub('资产管理$', '资产', uw),
+  # uw <- gsub('南方电网财务', '南网财务', uw),
+  # uw <- gsub('（）', '', uw)
 
   # 以下为ASCII码的函数部分
   uw <- gsub("\u80a1\u4efd\u6709\u9650\u8d23\u4efb\u516c\u53f8","",uw)
@@ -131,6 +138,13 @@ organizeUnderwriter <- function(uw) {
   uw <- gsub("\u5317\u4eac\u519c\u6751\u5546\u4e1a\u94f6\u884c", "\u5317\u4eac\u519c\u5546\u884c", uw)
   uw <- gsub("\u4e0a\u6d77\u519c\u6751\u5546\u4e1a\u94f6\u884c", "\u4e0a\u6d77\u519c\u5546\u884c", uw)
   uw <- gsub('\u897f\u85cf\u540c\u4fe1\u8bc1\u5238', '\u897f\u85cf\u540c\u4fe1', uw)
+  uw <- gsub("\u90ae\u653f\u50a8\u84c4\u94f6\u884c", "\u90ae\u50a8\u94f6\u884c", uw)
+  uw <- gsub("\u519c\u4e1a\u53d1\u5c55\u94f6\u884c", "\u519c\u53d1\u884c", uw)
+  uw <- gsub("\u519c\u6751\u5546\u4e1a\u94f6\u884c", "\u519c\u5546\u884c", uw)
+  uw <- gsub("\u5e7f\u4e1c\u987a\u5fb7", "\u987a\u5fb7", uw)
+  uw <- gsub("\u8d44\u4ea7\u7ba1\u7406$", "\u8d44\u4ea7", uw)
+  uw <- gsub("\u5357\u65b9\u7535\u7f51\u8d22\u52a1", "\u5357\u7f51\u8d22\u52a1", uw)
+  uw <- gsub("\uff08\uff09", "", uw)
 
   # uw[uw==''] <- '无'
   uw[uw==''] <- '\u65e0'
