@@ -86,5 +86,6 @@ printRank <- function(data, header_cn=TRUE) {
                       "\u7edd\u5bf9\u6570\u91cf",
                       "\u7edd\u5bf9\u6570\u91cf\u6392\u540d")
   }
-  print(data)
+
+  return(data)
 }

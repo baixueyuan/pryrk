@@ -12,6 +12,10 @@ prk <- printRank(rk)
 saveToExcel(rk, open=TRUE)
 View(prk)
 
+# 使用综合函数rank进行查询
+rank()
+rank(type='企业债', start='2015-01-01', end='2015-06-30', save=T)
+
 # 将中文转为ASCII码
 str <- c(
   "uw <- gsub('民生银行成都分行', '民生银行', uw)",

@@ -8,7 +8,7 @@
 \usage{
 filterType(data, type)
 
-filterDate(data, start, end, date_type = "initdate")
+filterDate(data, start = NULL, end = NULL, date_type = "initdate")
 }
 \arguments{
 \item{data}{data.frame, it's better to be returned by \code{getDataUsingWind}
@@ -31,9 +31,14 @@ The filtered data.frame for the further work.
 Filter the data with the attribute of bond's type and important dates, this
 will help to
 customize the further work. It is the best practice to use this filter
-function to the data returned by \code{getDataUsingWind}.
+function to the data returned by \code{getDataUsingWind}. But if the data
+returned by \code{uwSplit} exists and such data is big, then use filter to it
+is better to avoid the long-time wait by using \code{uwSplit}.
 }
 \details{
-Pay attention to the point that
+Pay attention to that when filtering the type, only three type options can
+be given and get the right result. When filtering date, start and end
+dates are all given and obtain the result, otherwise two params are default
+set to \code{NULL} which will just pass throught the input \code{data}.
 }
 

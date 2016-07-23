@@ -3,9 +3,14 @@
 #' Filter the data with the attribute of bond's type and important dates, this
 #' will help to
 #' customize the further work. It is the best practice to use this filter
-#' function to the data returned by \code{getDataUsingWind}.
+#' function to the data returned by \code{getDataUsingWind}. But if the data
+#' returned by \code{uwSplit} exists and such data is big, then use filter to it
+#' is better to avoid the long-time wait by using \code{uwSplit}.
 #'
-#' Pay attention to the point that
+#' Pay attention to that when filtering the type, only three type options can
+#' be given and get the right result. When filtering date, start and end
+#' dates are all given and obtain the result, otherwise two params are default
+#' set to \code{NULL} which will just pass throught the input \code{data}.
 #'
 #' @param data data.frame, it's better to be returned by \code{getDataUsingWind}
 #'   however if the data has the column *type* it will work
@@ -55,19 +60,24 @@ filterType <- function(data, type) {
 
 #' @rdname filter
 #' @export
-filterDate <- function(data, start, end, date_type='initdate') {
+filterDate <- function(data, start=NULL, end=NULL, date_type='initdate') {
 
-  # 起始日期应当早于结束日期
-  start <- as.Date(start)
-  end <- as.Date(end)
-  if (start >= end) stop('The "start" date should be earlier than "end" date.')
+  if (is.null(start) || is.null(end)) {
+    # 日期默认为NULL，如果不给定日期则直接返回给出的data
+    return(data)
+  } else {
+    # 起始日期应当早于结束日期
+    start <- as.Date(start)
+    end <- as.Date(end)
+    if (start >= end) stop('The "start" date should be earlier than "end" date.')
 
-  # 日期类型尽可以为发行起始日或起息日
-  date_types <- c('initdate', 'carrydate')
-  if(is.na(match(date_type, date_types))) {
-    stop('The param date_type can only be one of "initdate" or "carrydate"')
+    # 日期类型尽可以为发行起始日或起息日
+    date_types <- c('initdate', 'carrydate')
+    if(is.na(match(date_type, date_types))) {
+      stop('The param date_type can only be one of "initdate" or "carrydate"')
+    }
+
+    res <- data[data[[date_type]] >= start & data[[date_type]] <= end, ]
   }
-
-  res <- data[data[[date_type]] >= start & data[[date_type]] <= end, ]
   return(res)
 }
