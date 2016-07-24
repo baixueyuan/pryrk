@@ -1,4 +1,4 @@
-# 编译文挡，从注释到Rd文件
+# 编译文挡，从注释到rD文件
 roxygen2::roxygenize()
 
 # 测试脚本
@@ -10,7 +10,7 @@ uw <- uwSplit(dat)
 rk <- uwRanking(uw)
 prk <- printRank(rk)
 saveToExcel(rk, open=TRUE)
-View(prk)
+view(prk)
 
 # 使用综合函数rank进行查询
 rank()

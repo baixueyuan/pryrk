@@ -1,8 +1,7 @@
 ---
-title: "中文标题"
-author: "我是作者"
+title: "中国债券市场承销排名计算"
+author: "白雪原"
 date: "`r Sys.Date()`"
-abstract: 这里是一段摘要，看看是否能够正确显示。
 documentclass: ctexart
 output:
   rticles::ctex:
@@ -16,52 +15,42 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
-
-是否可以正确显示中文？
-
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
-
-# Vignette Info
-
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
-
-# Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-# Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
+```{r prepare, message=FALSE, warning=FALSE, include=FALSE}
+library(pryrk)
 ```
 
-You can enable figure captions by `fig_caption: yes` in YAML:
+`pryrk`包（Primary Market Ranking）是用来快速查看和计算中国债券市场承销商的承销排名的R语言包，其主要依赖于Wind资讯客户端导出的债券承销数据，但也可以在此基础上进行筛选，目前该包的主要功能如下：
 
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
+- 可以对债券的分类进行选择，依据“公司债”、“企业债”和“中票短融”三大种类进行选择
+- 可以设置开始和结束的日期，进行区间排名统计
+- 将结果导出至已格式化设置的Excel文件
 
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
+`pryrk`包的使用非常简单，以下为具体介绍。 
 
-## More Examples
+# 快速使用指南
 
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
+虽然`pryrk`包中包含了多个函数，用于进行排名计算，但同时包含了一个综合函数`rank`可以调用这些基础函数直接得到结果，即前民提到的包的主要功能都可以通过`rank`函数实现。注意，如要再使用`base`包中的`rank`函数，需要使用`base::rank`。
 
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
+在使用`library(pryrk)`载入包之后，可以直接输入`rank()`获得排名数据：
+
+```{r size='small'}
+rank()
 ```
 
-Also a quote using `>`:
+可以看到这里完全没有输入任何参数，需要注意的是，尽管参数都已经有默认值，包括输入的文件名`file`，其默认值是`file="bond.xlsx"`，即在当前的工作目录下应当存在一个`bond.xlsx`的数据文件以供函数提取数据，才能进行计算排名。
 
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
+因此，只要在Wind资讯客户端提取了想要进行排名的数据文件，存为当前目录下的`bond.xlsx`，然后直接使用`rank()`即能看到前20名承销商的排名情况。
+
+# 数据说明
+
+## 原始数据输入
+
+为了得到承销商的承销业绩排名，所谓的原始数据输入，就是通过Wind资讯终端导出的债券发行数据。在Wind资讯终端中的**债券**菜单下，选择**专题研究**中的**一级市场**，或者直接输入**BPM**，在进入到债券一级市场研究的界面后，在左侧的栏目中最上端选择**新发行债券**，此时就可以看到债券发行列表，并可以进行筛选。如下图所示：
+
+![在Wind资讯终端提取发行数据](wind_primary.png)
+
+可以看到，在此处查询数据时，即可对源数据进行筛选，得到符合要求的源数据后，得到的排名结果也就不需要进行任何调整。
+
+## 排名结果说明
+
+
