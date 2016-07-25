@@ -3,7 +3,7 @@ roxygen2::roxygenize()
 
 # 测试脚本
 rm(list=ls())
-data <- getDataUsingWind('bond1.xlsx')
+data <- getDataUsingWind('bond.xlsx')
 dat <- filterType(data, '公司债')
 dat <- filterDate(dat, '2016-01-01', '2016-06-30')
 uw <- uwSplit(dat)
@@ -39,3 +39,7 @@ naf$kind <- stringi::stri_escape_unicode(naf$kind)
 save(naf, file='R/sysdata.rda', compress=TRUE)
 
 testdata("银行")
+
+for (i in c('name', 'type', 'underwriter')) {
+  uw[i]  <- stringi::stri_unescape_unicode(uw[[i]])
+}
