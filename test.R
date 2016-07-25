@@ -11,3 +11,7 @@ for (i in ind) {
 }
 cat(src, sep='\n')
 write(src, file='tt.R')
+
+data <- head(uwrk, 10)
+caption <- '承销排名示例'
+kable_im(head(uwrk, 10), caption = '债券承销示例')
