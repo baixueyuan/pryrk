@@ -33,7 +33,7 @@
 
 rank <- function(envir=.GlobalEnv, file, update=FALSE, save=FALSE, type,
                  start, end, date_type, output, sheet='Rank', open=FALSE,
-                 print.head=TRUE) {
+                 print.head=TRUE, use.tidyr=TRUE) {
 
   # 如果update为TRUE则强制更新债券发行信息列表bond_list
   # 否则检查环境中是否存在bond_list，存在则直接使用，不存在则读取数据
@@ -60,12 +60,12 @@ rank <- function(envir=.GlobalEnv, file, update=FALSE, save=FALSE, type,
 
   # 随后步骤类似数据读取，先检查update是否为TRUE，再检查是否存在可用数据
   if (update) {
-    uw <- uwSplit(bond_list)
+    uw <- uwSplit(bond_list, use.tidyr)
   } else {
     if (exists('uw', envir=envir)) {
       uw <- get('uw', envir=envir)
     } else {
-      uw <- uwSplit(bond_list)
+      uw <- uwSplit(bond_list, use.tidyr)
     }
   }
 

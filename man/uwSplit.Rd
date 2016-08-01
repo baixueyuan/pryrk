@@ -4,11 +4,13 @@
 \alias{uwSplit}
 \title{Process the Data for Rank}
 \usage{
-uwSplit(data)
+uwSplit(data, use.tidyr = TRUE)
 }
 \arguments{
 \item{data}{the original primary bond market data, which is read by the
 function \code{getDataUsingWind}, and it must contain column "underwriter."}
+
+\item{use.tidyr}{logical, whether to use \code{tidyr::separate_rows}}
 }
 \value{
 A data.frame like the input one, however, every record has only one
@@ -23,6 +25,8 @@ of the underwriter.
 The data returned by \code{getDataUsingWind} is used here. This is the step
 before ranking. It is easy to handle with the single underwriter record,
 however the co-underwriters are "pasted" into on string. This function split
-co-underwriters as they are seperated by ",".
+co-underwriters as they are seperated by ",". The param \code{use.tidyr} is
+TRUE in default, and this will use \code{tidyr::separate_rows} which will
+improve the speed obviously.
 }
 

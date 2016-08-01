@@ -6,7 +6,8 @@ rm(list=ls())
 data <- getDataUsingWind('bond.xlsx')
 dat <- filterType(data, '公司债')
 dat <- filterDate(dat, '2016-01-01', '2016-06-30')
-uw <- uwSplit(dat)
+uw1 <- uwSplit(data, FALSE)
+uw <- uwSplit(data)
 rk <- uwRanking(uw)
 prk <- printRank(rk)
 saveToExcel(rk, open=TRUE)
@@ -15,6 +16,12 @@ view(prk)
 # 使用综合函数rank进行查询
 rank()
 rank(type='企业债', start='2015-01-01', end='2015-06-30', save=T)
+
+# 测试
+rm(list=ls())
+system.time(rank(print.head=FALSE))
+rm(list=ls())
+system.time(rank(print.head=FALSE, use.tidyr=FALSE))
 
 # 将中文转为ASCII码
 str <- c(
