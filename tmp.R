@@ -1,4 +1,4 @@
-# 编译文挡，从注释到rD文件
+# 编译文挡，从注释到rds文件
 roxygen2::roxygenize()
 
 # 测试脚本
